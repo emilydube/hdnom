@@ -1,1 +1,731 @@
-Bello world!
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>hdnom: Nomograms for High-Dimensional Cox Models</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Animation Libraries -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/magic.min.css">
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:100,300,400,700,900%7COpen+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <!-- Fonts Icons -->
+    <link rel="stylesheet" href="css/custom-icons.css">
+    <link rel="stylesheet" href="css/et-line-icons.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- Nivo Lightbox -->
+    <link rel="stylesheet" href="css/nivo-lightbox/nivo-lightbox.css">
+    <link rel="stylesheet" href="css/nivo-lightbox/lightbox-theme.css">
+    <!-- Animated Headlines -->
+    <link rel="stylesheet" href="css/animated-hedlines.css">
+    <!-- Main Styles -->
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- Theme -->
+    <link href="css/theme/orange.css" rel="stylesheet" data-color="" id="theme">
+    <!-- Animsition -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/css/animsition.min.css" rel="stylesheet">
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+</head>
+
+<body>
+<!-- Page Wrapper -->
+<div id="page" class="animsition" data-loader-type="loader1" data-page-loader-text="" data-animsition-in="zoom-outy" data-animsition-out="fade-out-up-sm" style="transform-origin: 50% 50vh;">
+    <div id="top"></div>
+    <!-- Home Section -->
+    <section id="home-section" class="home-section overlay full-screen">
+        <div class="parallax-hero full-screen overlay home-bg" data-top="transform: translate3d(0px, 0px, 0px)" data-top-bottom="transform: translate3d(0px, -200px, 0px)" data-anchor-target="#home-section">
+        </div>
+        <div class="hs-content">
+            <div class="hs-content-inner">
+                <div class="margin-bottom-10 init-animation-5 delay0-8s">
+                    <h2 class="hs-text-6">Nomograms for high-dimensional Cox models</h2>
+                </div>
+                <div class="margin-bottom-30 init-animation-2 delay0-2s">
+                    <h1 class="hs-text-10 uppercase padding-top-40 font-second"><p style="text-transform:lowercase">hdnom<p></h1>
+                </div>
+                <div class="inline-block margin-top-10 padding-top-10 padding-right-sm-40 ">
+                    <a href="https://cran.r-project.org/web/packages/hdnom/" class="btn btn-animated btn-split btn-transparent-white ripple-alone" data-text="View on CRAN"><span>Stable Version</span></a>
+                </div>
+                <div class="inline-block margin-top-10 padding-top-10 padding-left-sm-40">
+                    <a href="https://github.com/road2stat/hdnom" class="btn btn-animated btn-split btn-transparent-white ripple-alone" data-text="View on GitHub"><span>Dev Version</span></a>
+                </div>
+
+            </div>
+                <span class="scroll-down-arrow in-page-scroll" data-start="display: inline-block" data-100-start="display: none">
+                    <a href="#process-section" class="ci-icon-uniE930 init-animation-2 delay1-8s"></a>
+                </span>
+        </div>
+    </section>
+    <!--/ End Home Section -->
+    <!-- Navbar -->
+    <div class="position-relative">
+        <div id="nav-wrapper" class="transp-nav">
+            <nav id="nav" class="navbar navbar-transparent navbar-fixed-top navbar-default ripple-group-parent init-animation-5" role="navigation">
+                <!-- progressbar -->
+                <div id="scroll-progressbar" class="scroll-progressbar">
+                    <div>
+                        <span class="scroll-shadow"></span>
+                    </div>
+                </div>
+                <div class="container in-page-scroll">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" id="animated-navicon" class="navbar-toggle" data-toggle="collapse" data-target="#mobile-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand ripple-group" href="#top">
+                            <p class="pull-left font-second">hdnom</p>
+                        </a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="mobile-navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right cl-effect-5">
+                            <li>
+                                <a class="ripple-group" href="#top">
+                                    <span data-hover="Home">Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ripple-group" href="#process-section">
+                                    <span data-hover="Features">Features</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ripple-group" href="#nomogram-section">
+                                    <span data-hover="Nomogram">Nomogram</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ripple-group" href="#validate-section">
+                                    <span data-hover="Validation">Validation</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ripple-group" href="#calibrate-section">
+                                    <span data-hover="Calibration">Calibration</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ripple-group" href="#about-section">
+                                    <span data-hover="About">About</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+        </div>
+    </div>
+    <!--/ End Navbar -->
+    <div id="page-2">
+
+        <!-- Process Section -->
+        <section id="process-section" class="process-section section">
+            <div class="container">
+                <div class="section-title">
+                    <div class=" section-title-more">
+                        Click icons for details
+                    </div>
+                    <div>
+                        <h1 class="section-title-heading"><span>Workflow Supported</span> <p style="text-transform:lowercase">in hdnom</p></h1>
+                    </div>
+                </div>
+                <div class="position-relative padding-bottom-40 padding-top-100 padding-top-sm-120">
+                    <!-- process headers -->
+                    <ul class="process-labels font-second">
+                        <!-- change [data-active] and list item to a same value -->
+                        <li data-que="1" class="process-label-active wow fadeInDown" data-wow-offset="100" data-wow-delay="0s">
+                            <i class="icon-layers">
+                                <i class="icon-layers icon-shade"></i>
+                            </i>
+                            <span data-active="Model&nbsp;Building"> Model&nbsp;Building</span>
+                        </li>
+                        <li data-que="2" class=" wow fadeInDown" data-wow-offset="100" data-wow-delay=".15s">
+                            <i class="icon-tools">
+                                <i class="icon-tools icon-shade"></i>
+                            </i>
+                            <span data-active="Nomogram&nbsp;Plotting"> Nomogram&nbsp;Plotting</span>
+                        </li>
+                        <li data-que="3" class=" wow fadeInDown" data-wow-offset="100" data-wow-delay=".3s">
+                            <i class="icon-gears">
+                                <i class="icon-gears icon-shade"></i>
+                            </i>
+                            <span data-active="Model&nbsp;Validation"> Model&nbsp;Validation</span>
+                        </li>
+                        <li data-que="4" class=" wow fadeInDown" data-wow-offset="100" data-wow-delay=".45s">
+                            <i class="icon-tools-2">
+                                <i class="icon-tools-2 icon-shade"></i>
+                            </i>
+                            <span data-active="Model&nbsp;Calibration"> Model&nbsp;Calibration</span>
+                        </li>
+                    </ul>
+                    <!--/ End process headers -->
+                    <!-- process bar -->
+                    <div class="line-process-parent">
+                        <div class="line-process"></div>
+                    </div>
+                    <!--/ End process bar -->
+                </div>
+            </div>
+            <!-- /.container -->
+            <!-- process contents -->
+            <div id="process" class="process owl-carousel container">
+                <!-- process item -->
+                <div class="process-item section-text row container">
+                    <div class="col-xs-12 col-sm-6">
+                        <p>hdnom provides automatic parameter and model selection functions for building high-dimensional
+                            penalized Cox models. </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <p>Available functions:<br>
+                            <code>hdcox.lasso</code>, <code>hdcox.alasso</code>, <code>hdcox.enet</code>, <code>hdcox.aenet</code></p>
+                    </div>
+                </div>
+                <!--/ End process item -->
+                <!-- process item -->
+                <div class="process-item section-text row container">
+                    <div class="col-xs-12 col-sm-6">
+                        <p>With hdnom, nomogram plotting is supported for all <code>glmnet</code> Cox model objects,
+                            from <code>glmnet()</code>` or <code>hdcox.*()</code> functions.</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <p>Available functions:<br><code>hdnom.nomogram</code></p>
+                    </div>
+                </div>
+                <!--/ End process item -->
+                <!-- process item -->
+                <div class="process-item section-text row container">
+                    <div class="col-xs-12 col-sm-6">
+                        <p>Time-dependent AUC based model validation is supported. Bootstrap, k-fold cross-validation,
+                            repeated k-fold cross-validation are all available.</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <p>Available functions:<br><code>hdnom.validate</code></p>
+                    </div>
+                </div>
+                <!--/ End process item -->
+                <!-- process item -->
+                <div class="process-item section-text row container">
+                    <div class="col-xs-12 col-sm-6">
+                        <p>Model calibration by direct fitting, bootstrap, k-fold cross-validation, repeated k-fold
+                            cross-validation, are supported in hdnom.</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <p>Available functions:<br><code>hdnom.calibrate</code></p>
+                    </div>
+                </div>
+                <!--/ End process item -->
+            </div>
+            <!--/ End process contents -->
+        </section>
+        <!--/ End Process Section -->
+
+        <div class="container">
+            <div class="section-title">
+                <div>
+                    <h1 class="section-title-heading"><span>Methods provided</span><p style="text-transform:lowercase">in hdnom</p></h1>
+                </div>
+            </div>
+            <div class="services-section-items padding-top-sm-10 row">
+                <div class="services-section-item col-sm-4 margin-bottom-xs-40 wow fadeInUpLeftScale">
+                    <div class="services-section-item-icon">
+                        <i class="icon-laptop"></i>
+                    </div>
+                    <h4 class="services-item-title font-second">Print</h4>
+                    <div class="services-section-item-text">
+                        <p>Objects returned by <code>hdnom.nomogram()</code>, <code>hdnom.validate()</code>,
+                            and <code>hdnom.calibrate()</code> can be printed to view the basic modeling information
+                            of the object.</p>
+                    </div>
+                </div>
+                <!--/ End Services Section Item -->
+                <div class="services-section-item col-sm-4 margin-bottom-xs-40 wow fadeInUpScale">
+                    <div class="services-section-item-icon">
+                        <i class="icon-lightbulb"></i>
+                    </div>
+                    <h4 class="services-item-title font-second">Summary</h4>
+                    <div class="services-section-item-text">
+                        <p>Users can use <code>summary()</code> on the objects returned by <code>hdnom.validate()</code>
+                            and <code>hdnom.calibrate()</code> to view the summary of the validation and calibration
+                            results.</p>
+                    </div>
+                </div>
+                <!--/ End Services Section Item -->
+                <div class="services-section-item col-sm-4 margin-bottom-xs-40 wow fadeInUpRightScale">
+                    <div class="services-section-item-icon">
+                        <i class="icon-bargraph"></i>
+                    </div>
+                    <h4 class="services-item-title font-second">Plot</h4>
+                    <div class="services-section-item-text">
+                        <p>To visualize the nomogram, validation and calibration results, objects returned by
+                            <code>hdnom.nomogram()</code>, <code>hdnom.validate()</code>,
+                            and <code>hdnom.calibrate()</code> can be plotted with <code>plot()</code>.</p>
+                    </div>
+                </div>
+                <!--/ End Services Section Item -->
+            </div>
+            <!--/.row -->
+        </div>
+        <!--/.container -->
+        <hr />
+
+        <section id="nomogram-section" class="container section">
+            <div id="workCopy">
+                <div class="section-title text-left padding-bottom-50">
+                    <div>
+                        <h2 class="section-title-heading"><span>Nomogram Plotting</span></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="workDesc">
+                            Nomogram is a useful tool for evaluating risk and illustrating important variables
+                            for clinical prognoses. As an intuitive graphical representation for predictive models,
+                            nomograms reduce multi-variate regression models to a single numerical estimate
+                            of the probability of clinical events, such as overall survival.
+                        </p>
+                        <p>
+                            The <code>hdnom.nomogram()</code> function helps us plot nomograms for
+                            penalized Cox models built with <code>hdcox.*()</code> functions and <code>glmnet()</code>.
+                        </p>
+                    </div>
+
+                    <div class="col-sm-2">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <ul class="portfolio-container no-margin-bottom list-unstyled row portfolio-hover-effect">
+                            <li class="portfolio-item photo video col-sm-12 col-md-12 col-xs-12">
+                                <div class="portfolio-item-img">
+                                    <img src="img/hdnom.nomogram.png" alt="nomogram" />
+                                </div>
+                                <div class="portfolio-item-info font-second">
+                                    <h3 class="portfolio-item-title">Plotted Nomogram</h3>
+                                    <div class="portfolio-item-detail">
+                                        <p>Click the icon to enlarge</p>
+                                        <!-- LightBox Button -->
+                                        <a href="img/hdnom.nomogram.png" class="icon-magnifying-glass lightbox" data-lightbox-gallery="gallery1"></a>
+                                        <!--/ End LightBox Button -->
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div>
+                    <h3 class="section-title-heading"><span>R functions & key options</span></h3>
+                </div>
+
+                <div class="row">
+                    <div class="work-category-title col-md-12">
+                        <h4><p style="text-transform:lowercase">hdcox.lasso() / hdcox.alasso()</p></h4>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> nfolds</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Fold numbers of cross-validation.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> rule</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Model selection criterion, <code>"lambda.min"</code> or <code>"lambda.1se"</code>. </div>
+                    </div>
+                </div>
+
+                <p></p>
+
+                <div class="row">
+                    <div class="work-category-title col-md-12">
+                        <h4><p style="text-transform:lowercase">hdcox.enet() / hdcox.aenet()</p></h4>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> nfolds</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Fold numbers of cross-validation.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> alphas</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Numeric vector. Alphas to tune, from 0 to 1.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> rule</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Model selection criterion, <code>"lambda.min"</code> or <code>"lambda.1se"</code>. </div>
+                    </div>
+                </div>
+
+                <p></p>
+
+                <div class="row">
+                    <div class="work-category-title col-md-12">
+                        <h4><p style="text-transform:lowercase">hdnom.nomogram()</p></h4>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> lambda</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Value of the penalty parameter <code>lambda</code> in glmnet.
+                            We will use the selected variables at the provided <code>lambda</code> to build the nomogram,
+                            and make predictions.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> pred.at</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Time point at which to plot nomogram prediction axis.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <hr />
+
+
+        <section id="validate-section" class="container section">
+            <div id="workCopy">
+                <div class="section-title text-left padding-bottom-50">
+                    <div>
+                        <h2 class="section-title-heading"><span>Model Validation</span></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="workDesc">
+                            As a common practice, we usually employ data splitting and resampling methods
+                            to validate the predictive performance of a regression model.
+                            Bootstrap, k-fold cross-validation, and repeated k-fold cross-validation
+                            are the most frequently utilized data splitting methods for such model
+                            performance validation purpose.</p>
+                        <p>
+                            The <code>hdnom.validate()</code> function allows the user to assess
+                            the model performance by time-dependent AUC (tAUC) with the three listed
+                            data splitting and resampling methods.
+                        </p>
+                    </div>
+
+                    <div class="col-sm-2">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <ul class="portfolio-container no-margin-bottom list-unstyled row portfolio-hover-effect">
+                            <li class="portfolio-item photo video col-sm-12 col-md-12 col-xs-12">
+                                <div class="portfolio-item-img">
+                                    <img src="img/hdnom.validate.png" alt="validation" />
+                                </div>
+                                <div class="portfolio-item-info font-second">
+                                    <h3 class="portfolio-item-title">Validation Plot</h3>
+                                    <div class="portfolio-item-detail">
+                                        <p>Click the icon to enlarge</p>
+                                        <!-- LightBox Button -->
+                                        <a href="img/hdnom.validate.png" class="icon-magnifying-glass lightbox" data-lightbox-gallery="gallery1"></a>
+                                        <!--/ End LightBox Button -->
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div>
+                    <h3 class="section-title-heading"><span>R functions & key options</span></h3>
+                </div>
+
+                <div class="row">
+                    <div class="work-category-title col-md-12">
+                        <h4><p style="text-transform:lowercase">hdnom.validate()</p></h4>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> alpha</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Value of the elastic-net mixing parameter alpha in glmnet.
+                            <code>alpha=1</code>: lasso; <code>alpha=0</code>: ridge.
+                            From the Cox model you have built.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> lambda</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Value of the penalty parameter lambda to use in the glmnet fits
+                            on the resampled data. From the Cox model you have built.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> pen.factor</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Penalty factors to apply to each coefficient.
+                            From the <em>adaptive</em> penalized Cox model you have built.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> method</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Validation method. Could be <code>"bootstrap"</code>,
+                            <code>"cv"</code>, or <code>"repeated.cv"</code>.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> boot.times</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Number of repetitions for bootstrap.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> nfolds</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Number of folds for cross-validation and repeated cross-validation.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> rep.times</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Number of repeated times for repeated cross-validation.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> tauc.type</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Type of time-dependent AUC. Including <code>"CD"</code> proposed by Chambless
+                            and Diao (2006)., <code>"SZ"</code> proposed by Song and Zhou (2008)., <code>"UNO"</code> proposed by Uno et al. (2007).</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> tauc.time</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Numeric vector. Time points at which to evaluate the time-dependent AUC.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <hr />
+
+        <section id="calibrate-section" class="container section">
+            <div id="workCopy">
+                <div class="section-title text-left padding-bottom-50">
+                    <div>
+                        <h2 class="section-title-heading"><span>Model Calibration</span></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="workDesc">
+                            Measuring how far the model predictions are from true survival outcomes
+                            is known as model <em>calibration</em>. Calibration can be assessed by computing
+                            and plotting the predicted probabilities from the model versus actual
+                            survival probabilities.
+                        </p>
+                        <p>
+                            <code>hdnom.calibrate()</code> provides 4 available methods
+                            for model calibration, including direct fitting, bootstrap
+                            resampling, k-fold cross-validation and repeated cross-validation.
+                        </p>
+                    </div>
+
+                    <div class="col-sm-2">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <ul class="portfolio-container no-margin-bottom list-unstyled row portfolio-hover-effect">
+                            <li class="portfolio-item photo video col-sm-12 col-md-12 col-xs-12">
+                                <div class="portfolio-item-img">
+                                    <img src="img/hdnom.calibrate.png" alt="calibration" />
+                                </div>
+                                <div class="portfolio-item-info font-second">
+                                    <h3 class="portfolio-item-title">Calibration Plot</h3>
+                                    <div class="portfolio-item-detail">
+                                        <p>Click the icon to enlarge</p>
+                                        <!-- LightBox Button -->
+                                        <a href="img/hdnom.calibrate.png" class="icon-magnifying-glass lightbox" data-lightbox-gallery="gallery1"></a>
+                                        <!--/ End LightBox Button -->
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div>
+                    <h3 class="section-title-heading"><span>R functions & key options</span></h3>
+                </div>
+
+                <div class="row">
+                    <div class="work-category-title col-md-12">
+                        <h4><p style="text-transform:lowercase">hdnom.calibrate()</p></h4>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> alpha</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Value of the elastic-net mixing parameter alpha in glmnet.
+                            <code>alpha=1</code>: lasso; <code>alpha=0</code>: ridge.
+                            From the Cox model you have built.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> lambda</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Value of the penalty parameter lambda to use in the glmnet fits
+                            on the resampled data. From the Cox model you have built.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> pen.factor</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Penalty factors to apply to each coefficient.
+                            From the <em>adaptive</em> penalized Cox model you have built.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> method</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Calibration method. Options including <code>"fitting"</code>,
+                            <code>"bootstrap"</code>, <code>"cv"</code>, and <code>"repeated.cv"</code>.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> boot.times</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Number of repetitions for bootstrap.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> nfolds</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Number of folds for cross-validation and repeated cross-validation.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> rep.times</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Number of repeated times for repeated cross-validation.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> pred.at</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Time point at which calibration should take place.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> ngroup</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Number of groups to be formed for calibration.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <hr />
+
+        <!-- About Section -->
+        <section id="about-section" class="about-section section">
+            <div class="container">
+                <div class="section-title">
+                    <div>
+                        <h2 class="section-title-heading">about <span style="text-transform:lowercase">hdnom</span></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 wow fadeInUp margin-bottom-xs-40">
+                        <blockquote class=" about-quote wow fadeInUp" data-wow-delay="0s">
+                            <p>Modeling high-dimensional data is not simple, but the modeling process should be easy and fun.
+                                To make the workflow of high-dimensional survival data analysis robust and reproducible enough,
+                                we built this package, <code>hdnom</code>.</p>
+                            <p>If you have any questions, suggestions, or ideas about the package, please feel free to let us know:</p>
+                        </blockquote>
+                    </div>
+                    <div class="col-sm-12 wow fadeInUp margin-bottom-xs-40">
+                        <div class="col-sm-6 wow fadeInUp margin-bottom-xs-40">
+                            <blockquote class=" about-quote wow fadeInUp" data-wow-delay="0.3s">
+                                <p><strong>Miaozhu Li</strong></p>
+                                <p>Web: &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://miaozhu.li">miaozhu.li</a></p>
+                                <p>Email: &nbsp;<a href="mailto:miaozhu.li@duke.edu">miaozhu.li@duke.edu</a></p>
+                            </blockquote>
+                        </div>
+
+                        <div class="col-sm-6 wow fadeInUp margin-bottom-xs-40">
+                            <blockquote class=" about-quote wow fadeInUp" data-wow-delay="0.3s">
+                                <p><strong>Nan Xiao</strong></p>
+                                <p>Web: &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://nanx.me">nanx.me</a></p>
+                                <p>Email: &nbsp;<a href="mailto:nanx@uchicago.edu">nanx@uchicago.edu</a></p>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <!--/.col -->
+                </div>
+                <!--/.row -->
+            </div>
+            <!--/.container -->
+        </section>
+        <!--/ End About Section -->
+        <hr />
+
+        <!-- Footer Section -->
+        <footer class="footer-section section no-padding-bottom">
+            <!-- go top pop-up -->
+            <div id="go-top" class="go-top go-top-out in-page-scroll">
+                <div class="circle1"></div>
+                <a href="#top" class="square"><span></span></a>
+                <div class="rectangle"></div>
+                <div class="circle2"></div>
+            </div>
+            <!--/ End go top pop-up -->
+            <div class="footer-bottom">
+                <!-- Copyright -->
+                <p class="footer-bottom-text font-second">Miaozhu & Nan © 2015. All Right Reserved.</p>
+                <!-- End Copyright -->
+            </div>
+        </footer>
+        <!--/ End Footer Section -->
+    </div>
+    <!--/ #page-2 -->
+</div>
+<!--/ #page -->
+<!-- JS Scripts -->
+<script src="js/modernizr.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/jquery.easing.1.3.min.js"></script>
+<script src="js/jquery.animsition.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.29/skrollr.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="js/jquery.counterup.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/animateSlider.js"></script>
+<script src="js/animated-headlines.js"></script>
+<script src="js/fss.min.js"></script>
+<script src="js/fssinit.solid.js"></script>
+<script src="js/retina.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+<script src="js/nivo-lightbox.min.js"></script>
+<script src="js/scripts.min.js"></script>
+<!--/ End JS Scripts -->
+</body>
+
+</html>

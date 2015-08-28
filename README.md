@@ -1,1 +1,1 @@
-# hdnomo
+# [nomogr.am](http://nomogr.am)
