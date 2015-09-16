@@ -186,20 +186,23 @@
                 <!-- process item -->
                 <div class="process-item section-text row container">
                     <div class="col-xs-12 col-sm-6">
-                        <p>hdnom provides automatic parameter and model selection functions for building high-dimensional
-                            penalized Cox models. </p>
+                        <p>hdnom provides automatic parameter and model selection functions for building
+                            9 types of high-dimensional penalized Cox models. </p>
                     </div>
                     <div class="col-xs-12 col-sm-6">
                         <p>Available functions:<br>
-                            <code>hdcox.lasso</code>, <code>hdcox.alasso</code>, <code>hdcox.enet</code>, <code>hdcox.aenet</code></p>
+                            <code>hdcox.lasso</code>, <code>hdcox.alasso</code>, <code>hdcox.flasso</code>,
+                            <code>hdcox.enet</code>, <code>hdcox.aenet</code>,
+                            <code>hdcox.scad</code>, <code>hdcox.snet</code>,
+                            <code>hdcox.mcp</code>, <code>hdcox.mnet</code></p>
                     </div>
                 </div>
                 <!--/ End process item -->
                 <!-- process item -->
                 <div class="process-item section-text row container">
                     <div class="col-xs-12 col-sm-6">
-                        <p>With hdnom, nomogram plotting is supported for all <code>glmnet</code> Cox model objects,
-                            from <code>glmnet()</code>` or <code>hdcox.*()</code> functions.</p>
+                        <p>With hdnom, nomogram plotting is supported for all Cox models built
+                            with the <code>hdcox.*()</code> functions.</p>
                     </div>
                     <div class="col-xs-12 col-sm-6">
                         <p>Available functions:<br><code>hdnom.nomogram</code></p>
@@ -286,7 +289,7 @@
             <div id="workCopy">
                 <div class="section-title text-left padding-bottom-50">
                     <div>
-                        <h2 class="section-title-heading"><span>Nomogram Plotting</span></h2>
+                        <h2 class="section-title-heading"><span>Model Building & Nomogram Plotting</span></h2>
                     </div>
                 </div>
                 <div class="row">
@@ -299,7 +302,7 @@
                         </p>
                         <p>
                             The <code>hdnom.nomogram()</code> function helps us plot nomograms for
-                            penalized Cox models built with <code>hdcox.*()</code> functions and <code>glmnet()</code>.
+                            penalized Cox models built with <code>hdcox.*()</code> functions.
                         </p>
                     </div>
 
@@ -351,6 +354,21 @@
 
                 <p></p>
 
+
+                <div class="row">
+                    <div class="work-category-title col-md-12">
+                        <h4><p style="text-transform:lowercase">hdcox.flasso()</p></h4>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> nfolds</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Fold numbers of cross-validation.</div>
+                    </div>
+                </div>
+
+                <p></p>
+
                 <div class="row">
                     <div class="work-category-title col-md-12">
                         <h4><p style="text-transform:lowercase">hdcox.enet() / hdcox.aenet()</p></h4>
@@ -379,14 +397,69 @@
 
                 <div class="row">
                     <div class="work-category-title col-md-12">
+                        <h4><p style="text-transform:lowercase">hdcox.scad() / hdcox.mcp()</p></h4>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> nfolds</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Fold numbers of cross-validation.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> gammas</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Numeric vector. Gammas to tune.</div>
+                    </div>
+                </div>
+
+                <p></p>
+
+                <div class="row">
+                    <div class="work-category-title col-md-12">
+                        <h4><p style="text-transform:lowercase">hdcox.mnet() / hdcox.snet()</p></h4>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> nfolds</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Fold numbers of cross-validation.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> gammas</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Numeric vector. Gammas to tune.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> alphas</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Numeric vector. Alphas to tune, from 0 to 1.</div>
+                    </div>
+                </div>
+
+                <p></p>
+
+                <div class="row">
+                    <div class="work-category-title col-md-12">
                         <h4><p style="text-transform:lowercase">hdnom.nomogram()</p></h4>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> model.type</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Fitted model type. One of
+                            <code>"lasso"</code>, <code>"alasso"</code>, <code>"flasso"</code>, <code>"enet"</code>,
+                            <code>"aenet"</code>, <code>"mcp"</code>, <code>"mnet"</code>, <code>"scad"</code>,
+                            or <code>"snet"</code>.</div>
                     </div>
                     <div class="col-md-2 col-sm-6">
                         <div class="category-item"> lambda</div>
                     </div>
                     <div class="col-md-10 col-sm-6">
-                        <div class="category-item"> Value of the penalty parameter <code>lambda</code> in glmnet.
-                            We will use the selected variables at the provided <code>lambda</code> to build the nomogram,
+                        <div class="category-item"> Value of the penalty parameter <code>lambda</code>.
+                            Selected variables are used at <code>lambda</code> to build the nomogram,
                             and make predictions.</div>
                     </div>
                     <div class="col-md-2 col-sm-6">
@@ -457,26 +530,42 @@
                         <h4><p style="text-transform:lowercase">hdnom.validate()</p></h4>
                     </div>
                     <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> model.type</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Model type to validate. One of
+                            <code>"lasso"</code>, <code>"alasso"</code>, <code>"flasso"</code>, <code>"enet"</code>,
+                            <code>"aenet"</code>, <code>"mcp"</code>, <code>"mnet"</code>, <code>"scad"</code>,
+                            or <code>"snet"</code>.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
                         <div class="category-item"> alpha</div>
                     </div>
                     <div class="col-md-10 col-sm-6">
-                        <div class="category-item"> Value of the elastic-net mixing parameter alpha in glmnet.
-                            <code>alpha=1</code>: lasso; <code>alpha=0</code>: ridge.
-                            From the Cox model you have built.</div>
+                        <div class="category-item"> Value of the elastic-net mixing parameter.
+                            <code>alpha=1</code>: lasso (l1) penalty; <code>alpha=0</code>: ridge (l2) penalty.
+                            From the built Cox model.</div>
                     </div>
                     <div class="col-md-2 col-sm-6">
                         <div class="category-item"> lambda</div>
                     </div>
                     <div class="col-md-10 col-sm-6">
-                        <div class="category-item"> Value of the penalty parameter lambda to use in the glmnet fits
-                            on the resampled data. From the Cox model you have built.</div>
+                        <div class="category-item"> Value of the penalty parameter lambda to use in the model fits
+                            on the resampled data. From the built Cox model.</div>
                     </div>
                     <div class="col-md-2 col-sm-6">
                         <div class="category-item"> pen.factor</div>
                     </div>
                     <div class="col-md-10 col-sm-6">
                         <div class="category-item"> Penalty factors to apply to each coefficient.
-                            From the <em>adaptive</em> penalized Cox model you have built.</div>
+                            From the built <em>adaptive lasso</em> or <em>adaptive elastic-net</em> model.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> gamma</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Value of the model parameter gamma for
+                            MCP/SCAD/Mnet/Snet models.</div>
                     </div>
                     <div class="col-md-2 col-sm-6">
                         <div class="category-item"> method</div>
@@ -538,7 +627,7 @@
                             survival probabilities.
                         </p>
                         <p>
-                            <code>hdnom.calibrate()</code> provides 4 available methods
+                            <code>hdnom.calibrate()</code> provides 4 methods
                             for model calibration, including direct fitting, bootstrap
                             resampling, k-fold cross-validation and repeated cross-validation.
                         </p>
@@ -577,26 +666,42 @@
                         <h4><p style="text-transform:lowercase">hdnom.calibrate()</p></h4>
                     </div>
                     <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> model.type</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Model type to calibrate. One of
+                            <code>"lasso"</code>, <code>"alasso"</code>, <code>"flasso"</code>, <code>"enet"</code>,
+                            <code>"aenet"</code>, <code>"mcp"</code>, <code>"mnet"</code>, <code>"scad"</code>,
+                            or <code>"snet"</code>.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
                         <div class="category-item"> alpha</div>
                     </div>
                     <div class="col-md-10 col-sm-6">
-                        <div class="category-item"> Value of the elastic-net mixing parameter alpha in glmnet.
-                            <code>alpha=1</code>: lasso; <code>alpha=0</code>: ridge.
-                            From the Cox model you have built.</div>
+                        <div class="category-item"> Value of the elastic-net mixing parameter.
+                            <code>alpha=1</code>: lasso (l1) penalty; <code>alpha=0</code>: ridge (l2) penalty.
+                            From the built Cox model.</div>
                     </div>
                     <div class="col-md-2 col-sm-6">
                         <div class="category-item"> lambda</div>
                     </div>
                     <div class="col-md-10 col-sm-6">
-                        <div class="category-item"> Value of the penalty parameter lambda to use in the glmnet fits
-                            on the resampled data. From the Cox model you have built.</div>
+                        <div class="category-item"> Value of the penalty parameter lambda to use in the model fits
+                            on the resampled data. From the built Cox model.</div>
                     </div>
                     <div class="col-md-2 col-sm-6">
                         <div class="category-item"> pen.factor</div>
                     </div>
                     <div class="col-md-10 col-sm-6">
                         <div class="category-item"> Penalty factors to apply to each coefficient.
-                            From the <em>adaptive</em> penalized Cox model you have built.</div>
+                            From the built <em>adaptive lasso</em> or <em>adaptive elastic-net</em> model.</div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="category-item"> gamma</div>
+                    </div>
+                    <div class="col-md-10 col-sm-6">
+                        <div class="category-item"> Value of the model parameter gamma for
+                            MCP/SCAD/Mnet/Snet models.</div>
                     </div>
                     <div class="col-md-2 col-sm-6">
                         <div class="category-item"> method</div>
