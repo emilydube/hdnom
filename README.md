@@ -1,1 +1,1 @@
-# [nomogr.am](http://nomogr.am)
+# [hdnom.org](http://hdnom.org)
