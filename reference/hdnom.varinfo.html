@@ -111,9 +111,9 @@ selected variables.</p>
 <span class='no'>event</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>EVENT</span>
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>)
 
-<span class='co'># Fit Cox model by lasso penalization</span>
-<span class='no'>lassofit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
-<span class='fu'>hdnom.varinfo</span>(<span class='no'>lassofit</span>, <span class='no'>x</span>)</div><div class='output co'>#&gt; $index
+<span class='co'># Fit Cox model with lasso penalty</span>
+<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
+<span class='fu'>hdnom.varinfo</span>(<span class='no'>fit</span>, <span class='no'>x</span>)</div><div class='output co'>#&gt; $index
 #&gt; [1]  2  6  8 22 23 24
 #&gt; 
 #&gt; $name

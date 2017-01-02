@@ -152,12 +152,12 @@ regression models.
 <span class='no'>time_new</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>TEVENT</span>[<span class='fl'>1001</span>:<span class='fl'>2000</span>]
 <span class='no'>event_new</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>EVENT</span>[<span class='fl'>1001</span>:<span class='fl'>2000</span>]
 
-<span class='co'># Fit Cox model by lasso penalization</span>
-<span class='no'>lassofit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>), <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
+<span class='co'># Fit Cox model with lasso penalty</span>
+<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>), <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
 
 <span class='co'># External validation with time-dependent AUC</span>
 <span class='no'>val.ext</span> <span class='kw'>=</span>
-  <span class='fu'>hdnom.external.validate</span>(<span class='no'>lassofit</span>, <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>,
+  <span class='fu'>hdnom.external.validate</span>(<span class='no'>fit</span>, <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>,
                           <span class='no'>x_new</span>, <span class='no'>time_new</span>, <span class='no'>event_new</span>,
                           <span class='kw'>tauc.type</span> <span class='kw'>=</span> <span class='st'>"UNO"</span>,
                           <span class='kw'>tauc.time</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='fl'>0.25</span>, <span class='fl'>2</span>, <span class='fl'>0.25</span>) * <span class='fl'>365</span>)

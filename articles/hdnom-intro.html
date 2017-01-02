@@ -41,7 +41,7 @@
       <h1>An Introduction to hdnom</h1>
                         <h4 class="author">Miaozhu Li &lt;<a href="http://miaozhu.li" class="uri">http://miaozhu.li</a>&gt; <br> Nan Xiao &lt;<a href="http://nanx.me" class="uri">http://nanx.me</a>&gt;</h4>
             
-            <h4 class="date">2016-12-29</h4>
+            <h4 class="date">2017-01-02</h4>
           </div>
 
     
@@ -88,33 +88,33 @@ event =<span class="st"> </span>smart$EVENT
 y =<span class="st"> </span><span class="kw">Surv</span>(time, event)</code></pre></div>
 <p>The dataset contains 3873 observations with corresponding survival outcome (<code>time</code>, <code>event</code>). 27 clinical variables (<code>x</code>) are available as the predictors. See <code><a href="../reference/smart.html">?smart</a></code> for a detailed explanation of the variables.</p>
 <p>Fit a penalized Cox model by adaptive elastic-net regularization, with <code>hdcox.aenet</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Enable parallel parameter tuning</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># enable parallel parameter tuning</span>
 <span class="kw">suppressMessages</span>(<span class="kw">library</span>(<span class="st">"doParallel"</span>))
 <span class="kw">registerDoParallel</span>(<span class="kw">detectCores</span>())
 
-aenetfit =<span class="st"> </span><span class="kw"><a href="../reference/hdcox.aenet.html">hdcox.aenet</a></span>(x, y, <span class="dt">nfolds =</span> <span class="dv">10</span>, <span class="dt">rule =</span> <span class="st">"lambda.1se"</span>,
-                       <span class="dt">seed =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">7</span>), <span class="dt">parallel =</span> <span class="ot">TRUE</span>)
-<span class="kw">names</span>(aenetfit)</code></pre></div>
+fit =<span class="st"> </span><span class="kw"><a href="../reference/hdcox.aenet.html">hdcox.aenet</a></span>(x, y, <span class="dt">nfolds =</span> <span class="dv">10</span>, <span class="dt">rule =</span> <span class="st">"lambda.1se"</span>,
+                  <span class="dt">seed =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">7</span>), <span class="dt">parallel =</span> <span class="ot">TRUE</span>)
+<span class="kw">names</span>(fit)</code></pre></div>
 <pre><code>## [1] "seed"              "enet_best_alpha"   "enet_best_lambda"
 ## [4] "enet_model"        "aenet_best_alpha"  "aenet_best_lambda"
 ## [7] "aenet_model"       "pen_factor"</code></pre>
-<p>Adaptive elastic-net includes two estimation steps. The random seed used for parameter tuning, the selected best <span class="math inline">\(\alpha\)</span>, the selected best <span class="math inline">\(\lambda\)</span>, the model fitted for each estimation step, and the penalty factor for the model coefficients in the second estimation step are all stored in the model object <code>aenetfit</code>.</p>
+<p>Adaptive elastic-net includes two estimation steps. The random seed used for parameter tuning, the selected best <span class="math inline">\(\alpha\)</span>, the selected best <span class="math inline">\(\lambda\)</span>, the model fitted for each estimation step, and the penalty factor for the model coefficients in the second estimation step are all stored in the model object <code>fit</code>.</p>
 </div>
 <div id="nomogram-plotting" class="section level1">
 <h1 class="hasAnchor"><html><body><a href="#nomogram-plotting" class="anchor"> </a></body></html>Nomogram Plotting</h1>
 <p>Before plotting the nomogram, we need to extract some necessary information about the model, namely, the model object and parameters, from the result of the last step:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit    =<span class="st"> </span>aenetfit$aenet_model
-alpha  =<span class="st"> </span>aenetfit$aenet_best_alpha
-lambda =<span class="st"> </span>aenetfit$aenet_best_lambda
-adapen =<span class="st"> </span>aenetfit$pen_factor</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model  =<span class="st"> </span>fit$aenet_model
+alpha  =<span class="st"> </span>fit$aenet_best_alpha
+lambda =<span class="st"> </span>fit$aenet_best_lambda
+adapen =<span class="st"> </span>fit$pen_factor</code></pre></div>
 <p>To plot the nomogram, first we make <code>x</code> available as a <code>datadist</code> object for the <code>rms</code> package <span class="citation">(Harrell 2013)</span>, then generate a <code>hdnom.nomogram</code> object with <code><a href="../reference/hdnom.nomogram.html">hdnom.nomogram()</a></code>, and plot the nomogram:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressMessages</span>(<span class="kw">library</span>(<span class="st">"rms"</span>))
 x.df =<span class="st"> </span><span class="kw">as.data.frame</span>(x)
 dd =<span class="st"> </span><span class="kw">datadist</span>(x.df)
 <span class="kw">options</span>(<span class="dt">datadist =</span> <span class="st">"dd"</span>)
 
-nom =<span class="st"> </span><span class="kw"><a href="../reference/hdnom.nomogram.html">hdnom.nomogram</a></span>(fit, <span class="dt">model.type =</span> <span class="st">"aenet"</span>, x, time, event, x.df,
-                     <span class="dt">lambda =</span> lambda, <span class="dt">pred.at =</span> <span class="dv">365</span> *<span class="st"> </span><span class="dv">2</span>,
+nom =<span class="st"> </span><span class="kw"><a href="../reference/hdnom.nomogram.html">hdnom.nomogram</a></span>(model, <span class="dt">model.type =</span> <span class="st">"aenet"</span>,
+                     x, time, event, x.df, <span class="dt">pred.at =</span> <span class="dv">365</span> *<span class="st"> </span><span class="dv">2</span>,
                      <span class="dt">funlabel =</span> <span class="st">"2-Year Overall Survival Probability"</span>)
 <span class="kw">plot</span>(nom)</code></pre></div>
 <p><img src="hdnom-intro_files/figure-html/unnamed-chunk-6-1.png" width="600" height="600"></p>
@@ -179,7 +179,7 @@ event_new =<span class="st"> </span>smart$EVENT[<span class="dv">1001</span>:<sp
 
 <span class="co"># External validation with time-dependent AUC</span>
 val.ext =
-<span class="st">  </span><span class="kw"><a href="../reference/hdnom.external.validate.html">hdnom.external.validate</a></span>(aenetfit, x, time, event,
+<span class="st">  </span><span class="kw"><a href="../reference/hdnom.external.validate.html">hdnom.external.validate</a></span>(fit, x, time, event,
                           x_new, time_new, event_new,
                           <span class="dt">tauc.type =</span> <span class="st">"UNO"</span>,
                           <span class="dt">tauc.time =</span> <span class="kw">seq</span>(<span class="fl">0.25</span>, <span class="dv">2</span>, <span class="fl">0.25</span>) *<span class="st"> </span><span class="dv">365</span>)
@@ -240,7 +240,7 @@ cal.int</code></pre></div>
 <h2 class="hasAnchor"><html><body><a href="#external-calibration" class="anchor"> </a></body></html>External Calibration</h2>
 <p>To perform external calibration with an external dataset, use <code><a href="../reference/hdnom.external.calibrate.html">hdnom.external.calibrate()</a></code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cal.ext =
-<span class="st">  </span><span class="kw"><a href="../reference/hdnom.external.calibrate.html">hdnom.external.calibrate</a></span>(aenetfit, x, time, event,
+<span class="st">  </span><span class="kw"><a href="../reference/hdnom.external.calibrate.html">hdnom.external.calibrate</a></span>(fit, x, time, event,
                            x_new, time_new, event_new,
                            <span class="dt">pred.at =</span> <span class="dv">365</span> *<span class="st"> </span><span class="dv">5</span>, <span class="dt">ngroup =</span> <span class="dv">3</span>)
 
@@ -375,10 +375,8 @@ cmp.val</code></pre></div>
 ## 0.75 Qt. 0.6823622 0.6825825
 ## Max      0.7325616 0.7458939</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cmp.val)</code></pre></div>
-<pre><code>## Warning: Ignoring unknown aesthetics: fill</code></pre>
 <p><img src="hdnom-intro_files/figure-html/unnamed-chunk-15-1.png" width="600" height="480"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cmp.val, <span class="dt">interval =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## Warning: Ignoring unknown aesthetics: fill</code></pre>
 <p><img src="hdnom-intro_files/figure-html/unnamed-chunk-15-2.png" width="600" height="480"></p>
 <p>The solid line, dashed line and intervals have the same interpretation as above. For this comparison, there seems to be no substantial difference (AUC difference <span class="math inline">\(&lt; 5\%\)</span>) between lasso and adaptive lasso in predictive performance, although lasso performs slightly better than adaptive lasso for the first three time points, adaptive lasso performs slightly better than lasso for the last few time points.</p>
 <p>The model comparison functions in <code>hdnom</code> have a minimal input design so you do not have to set the parameters for each model type manually. The functions will try to determine the best parameter settings automatically for each model type to achieve the best performance.</p>
@@ -442,7 +440,7 @@ cmp.cal</code></pre></div>
 <h1 class="hasAnchor"><html><body><a href="#prediction-on-new-data" class="anchor"> </a></body></html>Prediction on New Data</h1>
 <p>To predict the overall survival probability on certain time points for new samples with the established models, simply use <code>predict()</code> on the model objects and the new data.</p>
 <p>As an example, we will use the samples numbered from 101 to 105 in the <code>smart</code> dataset as the new samples, and predict their overall survival probability from one year to ten years:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(aenetfit, x, y, <span class="dt">newx =</span> x[<span class="dv">101</span>:<span class="dv">105</span>, ], <span class="dt">pred.at =</span> <span class="dv">1</span>:<span class="dv">10</span> *<span class="st"> </span><span class="dv">365</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(fit, x, y, <span class="dt">newx =</span> x[<span class="dv">101</span>:<span class="dv">105</span>, ], <span class="dt">pred.at =</span> <span class="dv">1</span>:<span class="dv">10</span> *<span class="st"> </span><span class="dv">365</span>)</code></pre></div>
 <pre><code>##            365       730      1095      1460      1825      2190      2555
 ## [1,] 0.9476831 0.9203352 0.8883491 0.8572830 0.8171430 0.7841366 0.7430376
 ## [2,] 0.9714625 0.9562557 0.9382028 0.9203799 0.8969040 0.8771987 0.8521190

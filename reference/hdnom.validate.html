@@ -86,8 +86,8 @@
 
     <pre><span class='fu'>hdnom.validate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"lasso"</span>, <span class='st'>"alasso"</span>, <span class='st'>"flasso"</span>,
   <span class='st'>"enet"</span>, <span class='st'>"aenet"</span>, <span class='st'>"mcp"</span>, <span class='st'>"mnet"</span>, <span class='st'>"scad"</span>, <span class='st'>"snet"</span>), <span class='no'>alpha</span>, <span class='no'>lambda</span>,
-  <span class='kw'>pen.factor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>gamma</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"bootstrap"</span>, <span class='st'>"cv"</span>, <span class='st'>"repeated.cv"</span>),
-  <span class='kw'>boot.times</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rep.times</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>pen.factor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>gamma</span>, <span class='no'>lambda1</span>, <span class='no'>lambda2</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"bootstrap"</span>, <span class='st'>"cv"</span>,
+  <span class='st'>"repeated.cv"</span>), <span class='kw'>boot.times</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>rep.times</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tauc.type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"CD"</span>, <span class='st'>"SZ"</span>, <span class='st'>"UNO"</span>), <span class='no'>tauc.time</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1001</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -122,6 +122,10 @@ From the built <em>adaptive lasso</em> or <em>adaptive elastic-net</em> model.</
       <dt>gamma</dt>
       <dd>Value of the model parameter gamma for
 MCP/SCAD/Mnet/Snet models.</dd>
+      <dt>lambda1</dt>
+      <dd>Value of the penalty parameter lambda1 for fused lasso model.</dd>
+      <dt>lambda2</dt>
+      <dd>Value of the penalty parameter lambda2 for fused lasso model.</dd>
       <dt>method</dt>
       <dd>Validation method.
 Could be <code>&quot;bootstrap&quot;</code>, <code>&quot;cv&quot;</code>, or <code>&quot;repeated.cv&quot;</code>.</dd>
@@ -174,13 +178,13 @@ regression models.
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>)
 
 <span class='co'># Fit penalized Cox model with lasso penalty</span>
-<span class='no'>lassofit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
+<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
 
 <span class='co'># Model validation by bootstrap with time-dependent AUC</span>
 <span class='co'># Normally boot.times should be set to 200 or more,</span>
 <span class='co'># we set it to 3 here only to save example running time.</span>
 <span class='no'>val.boot</span> <span class='kw'>=</span> <span class='fu'>hdnom.validate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-                          <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>lassofit</span>$<span class='no'>lasso_best_lambda</span>,
+                          <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
                           <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"bootstrap"</span>, <span class='kw'>boot.times</span> <span class='kw'>=</span> <span class='fl'>3</span>,
                           <span class='kw'>tauc.type</span> <span class='kw'>=</span> <span class='st'>"UNO"</span>, <span class='kw'>tauc.time</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='fl'>0.25</span>, <span class='fl'>2</span>, <span class='fl'>0.25</span>) * <span class='fl'>365</span>,
                           <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start bootstrap sample 1 
@@ -188,7 +192,7 @@ regression models.
 #&gt; Start bootstrap sample 3 </div><div class='input'>
 <span class='co'># Model validation by 5-fold cross-validation with time-dependent AUC</span>
 <span class='no'>val.cv</span> <span class='kw'>=</span> <span class='fu'>hdnom.validate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-                        <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>lassofit</span>$<span class='no'>lasso_best_lambda</span>,
+                        <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
                         <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"cv"</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>,
                         <span class='kw'>tauc.type</span> <span class='kw'>=</span> <span class='st'>"UNO"</span>, <span class='kw'>tauc.time</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='fl'>0.25</span>, <span class='fl'>2</span>, <span class='fl'>0.25</span>) * <span class='fl'>365</span>,
                         <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start fold 1 
@@ -198,7 +202,7 @@ regression models.
 #&gt; Start fold 5 </div><div class='input'>
 <span class='co'># Model validation by repeated cross-validation with time-dependent AUC</span>
 <span class='no'>val.repcv</span> <span class='kw'>=</span> <span class='fu'>hdnom.validate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-                           <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>lassofit</span>$<span class='no'>lasso_best_lambda</span>,
+                           <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
                            <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"repeated.cv"</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rep.times</span> <span class='kw'>=</span> <span class='fl'>3</span>,
                            <span class='kw'>tauc.type</span> <span class='kw'>=</span> <span class='st'>"UNO"</span>, <span class='kw'>tauc.time</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='fl'>0.25</span>, <span class='fl'>2</span>, <span class='fl'>0.25</span>) * <span class='fl'>365</span>,
                            <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start repeat round 1 fold 1 

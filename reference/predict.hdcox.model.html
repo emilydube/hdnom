@@ -107,8 +107,8 @@ at which predictions are to be made.</dd>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>nrow(newx) x length(pred.at)</code> matrix containing overall
-survival probablity.</p>
+    <p>A <code>nrow(newx) x length(pred.at)</code> matrix containing
+overall survival probablity.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -121,8 +121,8 @@ survival probablity.</p>
 <span class='no'>event</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>EVENT</span>
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>)
 
-<span class='no'>lassofit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
-<span class='fu'>predict</span>(<span class='no'>lassofit</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>newx</span> <span class='kw'>=</span> <span class='no'>x</span>[<span class='fl'>101</span>:<span class='fl'>105</span>, ], <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span> * <span class='fl'>365</span>)</div><div class='output co'>#&gt;            365       730      1095      1460      1825      2190      2555
+<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
+<span class='fu'>predict</span>(<span class='no'>fit</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>newx</span> <span class='kw'>=</span> <span class='no'>x</span>[<span class='fl'>101</span>:<span class='fl'>105</span>, ], <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span> * <span class='fl'>365</span>)</div><div class='output co'>#&gt;            365       730      1095      1460      1825      2190      2555
 #&gt; [1,] 0.9426815 0.9126720 0.8774868 0.8431967 0.7994927 0.7640509 0.7198655
 #&gt; [2,] 0.9617984 0.9414832 0.9173726 0.8935568 0.8627192 0.8372884 0.8050140
 #&gt; [3,] 0.9752150 0.9618922 0.9459469 0.9300495 0.9092393 0.8918778 0.8695718

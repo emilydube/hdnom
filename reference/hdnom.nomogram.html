@@ -86,7 +86,7 @@
 
     <pre><span class='fu'>hdnom.nomogram</span>(<span class='no'>object</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"lasso"</span>, <span class='st'>"alasso"</span>, <span class='st'>"flasso"</span>, <span class='st'>"enet"</span>,
   <span class='st'>"aenet"</span>, <span class='st'>"mcp"</span>, <span class='st'>"mnet"</span>, <span class='st'>"scad"</span>, <span class='st'>"snet"</span>), <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='no'>ddist</span>,
-  <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fun.at</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>funlabel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fun.at</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>funlabel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -106,14 +106,6 @@ Must be of the same length with the number of rows as <code>x</code>.</dd>
 Must be of the same length with the number of rows as <code>x</code>.</dd>
       <dt>ddist</dt>
       <dd>Data frame version of x, made by <code><a href='http://www.rdocumentation.org/packages/rms/topics/datadist'>datadist</a></code>.</dd>
-      <dt>lambda</dt>
-      <dd>Value of the penalty parameter lambda in
-<code><a href='http://www.rdocumentation.org/packages/glmnet/topics/glmnet'>glmnet</a></code> or <code><a href='http://www.rdocumentation.org/packages/ncvreg/topics/ncvsurv'>ncvsurv</a></code>.
-Required except when <code>model.type == &quot;flasso&quot;</code>.
-We will use the selected variables at the provided <code>lambda</code> to
-build the nomogram, and make predictions.
-See the example for choosing a proper lambda value extracted
-from cross-validation results.</dd>
       <dt>pred.at</dt>
       <dd>Time point at which to plot nomogram prediction axis.</dd>
       <dt>fun.at</dt>
@@ -121,6 +113,19 @@ from cross-validation results.</dd>
       <dt>funlabel</dt>
       <dd>Label for <code>fun</code> axis.</dd>
     </dl>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>We will try to use the value of the selected penalty
+parameter (e.g. lambda, alpha) in the model object fitted by
+<code><a href='http://www.rdocumentation.org/packages/glmnet/topics/glmnet'>glmnet</a></code>, <code><a href='http://www.rdocumentation.org/packages/ncvreg/topics/ncvsurv'>ncvsurv</a></code>, or
+<code><a href='http://www.rdocumentation.org/packages/penalized/topics/penalized'>penalized</a></code>. The selected variables under
+the penalty parameter will be used to build the nomogram
+and make predictions. This means, if you use routines other
+than <code>hdcox.*</code> functions to fit the model, please
+make sure that there is only one set of necessary parameters
+(e.g. only a single lambda should be in glmnet objects intead
+of a vector of multiple lambdas) in the fitted model object.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -134,7 +139,7 @@ from cross-validation results.</dd>
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>)
 
 <span class='co'># Fit penalized Cox model with lasso penalty</span>
-<span class='no'>lassofit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
+<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
 
 <span class='co'># Prepare data needed for plotting nomogram</span>
 <span class='no'>x.df</span> <span class='kw'>=</span> <span class='fu'>as.data.frame</span>(<span class='no'>x</span>)
@@ -142,9 +147,8 @@ from cross-validation results.</dd>
 <span class='fu'>options</span>(<span class='kw'>datadist</span> <span class='kw'>=</span> <span class='st'>"dd"</span>)
 
 <span class='co'># Generate hdnom.nomogram objects and plot nomogram</span>
-<span class='no'>nom</span> <span class='kw'>=</span> <span class='fu'>hdnom.nomogram</span>(<span class='no'>lassofit</span>$<span class='no'>lasso_model</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-                     <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='no'>x.df</span>,
-                     <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>lassofit</span>$<span class='no'>lasso_best_lambda</span>, <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>2</span>,
+<span class='no'>nom</span> <span class='kw'>=</span> <span class='fu'>hdnom.nomogram</span>(<span class='no'>fit</span>$<span class='no'>lasso_model</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
+                     <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='no'>x.df</span>, <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>2</span>,
                      <span class='kw'>funlabel</span> <span class='kw'>=</span> <span class='st'>"2-Year Overall Survival Probability"</span>)
 
 <span class='fu'>print</span>(<span class='no'>nom</span>)</div><div class='output co'>#&gt; Points per unit of linear predictor: 43.07899 
@@ -229,7 +233,9 @@ from cross-validation results.</dd>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#note">Note</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

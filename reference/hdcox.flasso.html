@@ -82,10 +82,12 @@
 
     
     <p>Automatic fused lasso model selection for high-dimensional
-Cox models, evaluated by penalized partial-likelihood.</p>
+Cox models, evaluated by cross-validated likelihood.</p>
     
 
-    <pre><span class='fu'>hdcox.flasso</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5L</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1001</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre><span class='fu'>hdcox.flasso</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5L</span>, <span class='kw'>lambda1</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.001</span>, <span class='fl'>0.05</span>, <span class='fl'>0.5</span>, <span class='fl'>1</span>, <span class='fl'>5</span>),
+  <span class='kw'>lambda2</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.001</span>, <span class='fl'>0.01</span>, <span class='fl'>0.5</span>), <span class='kw'>maxiter</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>epsilon</span> <span class='kw'>=</span> <span class='fl'>0.001</span>,
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1001</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -95,20 +97,40 @@ Cox models, evaluated by penalized partial-likelihood.</p>
       <dd>Response matrix made by <code><a href='http://www.rdocumentation.org/packages/survival/topics/Surv'>Surv</a></code>.</dd>
       <dt>nfolds</dt>
       <dd>Fold numbers of cross-validation.</dd>
+      <dt>lambda1</dt>
+      <dd>Vector of lambda1 candidates.
+Default is <code>0.001, 0.05, 0.5, 1, 5</code>.</dd>
+      <dt>lambda2</dt>
+      <dd>Vector of lambda2 candidates.
+Default is <code>0.001, 0.01, 0.5</code>.</dd>
+      <dt>maxiter</dt>
+      <dd>The maximum number of iterations allowed.
+Default is <code>25</code>.</dd>
+      <dt>epsilon</dt>
+      <dd>The convergence criterion.
+Default is <code>1e-3</code>.</dd>
       <dt>seed</dt>
       <dd>A random seed for cross-validation fold division.</dd>
       <dt>trace</dt>
       <dd>Output the cross-validation parameter tuning
 progress or not. Default is <code>FALSE</code>.</dd>
+      <dt>parallel</dt>
+      <dd>Logical. Enable parallel parameter tuning or not,
+default is FALSE. To enable parallel tuning, load the
+<code>doParallel</code> package and run <code>registerDoParallel()</code>
+with the number of CPU cores before calling this function.</dd>
+      <dt>...</dt>
+      <dd>other parameters to <code><a href='http://www.rdocumentation.org/packages/penalized/topics/cvl'>cvl</a></code>
+and <code><a href='http://www.rdocumentation.org/packages/penalized/topics/penalized'>penalized</a></code>.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The cross-validation procedure used in this function is the
-so-called approximated cross-validation provided by the <code>penalized</code>
+<em>approximated cross-validation</em> provided by the <code>penalized</code>
 package. Be careful dealing with the results since they might be more
-optimistic than fully fitting the model. This cross-validation method
-is more suitable for datasets with larger number of observations,
+optimistic than a traditional CV procedure. This cross-validation
+method is more suitable for datasets with larger number of observations,
 and a higher number of cross-validation folds.</p>
     
 
@@ -118,26 +140,24 @@ and a higher number of cross-validation folds.</p>
 
 <span class='co'># Load imputed SMART data; only use the first 120 samples</span>
 <span class='fu'>data</span>(<span class='st'>"smart"</span>)
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>as.matrix</span>(<span class='no'>smart</span>[, -<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>)])[<span class='fl'>1</span>:<span class='fl'>140</span>, ]
-<span class='no'>time</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>TEVENT</span>[<span class='fl'>1</span>:<span class='fl'>140</span>]
-<span class='no'>event</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>EVENT</span>[<span class='fl'>1</span>:<span class='fl'>140</span>]
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>as.matrix</span>(<span class='no'>smart</span>[, -<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>)])[<span class='fl'>1</span>:<span class='fl'>120</span>, ]
+<span class='no'>time</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>TEVENT</span>[<span class='fl'>1</span>:<span class='fl'>120</span>]
+<span class='no'>event</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>EVENT</span>[<span class='fl'>1</span>:<span class='fl'>120</span>]
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>)
 
-<span class='co'># Fit Cox model by fused lasso penalization</span>
-<span class='no'>flassofit</span> <span class='kw'>=</span> <span class='fu'>hdcox.flasso</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
-
+<span class='co'># Fit Cox model with fused lasso penalty</span>
+<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'>hdcox.flasso</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)</div><div class='output co'>#&gt; 123123123123123123123123123123123123123123123</div><div class='input'>
 <span class='co'># Prepare data for hdnom.nomogram</span>
 <span class='no'>x.df</span> <span class='kw'>=</span> <span class='fu'>as.data.frame</span>(<span class='no'>x</span>)
 <span class='no'>dd</span> <span class='kw'>=</span> <span class='fu'>datadist</span>(<span class='no'>x.df</span>)
 <span class='fu'>options</span>(<span class='kw'>datadist</span> <span class='kw'>=</span> <span class='st'>"dd"</span>)
 
 <span class='co'># Generate hdnom.nomogram objects and plot nomogram</span>
-<span class='no'>nom</span> <span class='kw'>=</span> <span class='fu'><a href='hdnom.nomogram.html'>hdnom.nomogram</a></span>(<span class='no'>flassofit</span>$<span class='no'>flasso_model</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"flasso"</span>,
-                     <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='no'>x.df</span>,
-                     <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>flassofit</span>$<span class='no'>flasso_best_lambda</span>, <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>2</span>,
+<span class='no'>nom</span> <span class='kw'>=</span> <span class='fu'><a href='hdnom.nomogram.html'>hdnom.nomogram</a></span>(<span class='no'>fit</span>$<span class='no'>flasso_model</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"flasso"</span>,
+                     <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='no'>x.df</span>, <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>2</span>,
                      <span class='kw'>funlabel</span> <span class='kw'>=</span> <span class='st'>"2-Year Overall Survival Probability"</span>)
 
-<span class='fu'>plot</span>(<span class='no'>nom</span>)</div><img src='hdcox.flasso-2.png' alt='' width='540' height='400' /></pre>
+<span class='fu'>plot</span>(<span class='no'>nom</span>)</div><img src='hdcox.flasso-4.png' alt='' width='540' height='400' /></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
