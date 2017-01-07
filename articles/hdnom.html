@@ -41,7 +41,7 @@
       <h1>An Introduction to hdnom</h1>
                         <h4 class="author">Miaozhu Li &lt;<a href="http://miaozhu.li" class="uri">http://miaozhu.li</a>&gt; <br> Nan Xiao &lt;<a href="http://nanx.me" class="uri">http://nanx.me</a>&gt;</h4>
             
-            <h4 class="date">2017-01-04</h4>
+            <h4 class="date">2017-01-07</h4>
           </div>
 
     
@@ -117,7 +117,7 @@ nom =<span class="st"> </span><span class="kw"><a href="../reference/hdnom.nomog
                      x, time, event, x.df, <span class="dt">pred.at =</span> <span class="dv">365</span> *<span class="st"> </span><span class="dv">2</span>,
                      <span class="dt">funlabel =</span> <span class="st">"2-Year Overall Survival Probability"</span>)
 <span class="kw">plot</span>(nom)</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-6-1.png" width="600" height="600"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-6-1.png" width="600" height="600"></p>
 <p>According to the nomogram, the adaptive elastic-net model selected 6 variables from the original set of 27 variables, effectively reduced the model complexity.</p>
 <p>Information about the nomogram itself, such as the point-linear predictor unit mapping and total points-survival probability mapping, can be viewed by printing the <code>nom</code> object directly.</p>
 </div>
@@ -164,7 +164,7 @@ val.int</code></pre></div>
 <p>The mean, median, 25%, and 75% quantiles of time-dependent AUC at each time point across all bootstrap predictions are listed above. The median and the mean can be considered as the bias-corrected estimation of the model performance.</p>
 <p>It is also possible to plot the model validation result:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(val.int)</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-8-1.png" width="600" height="600"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-8-1.png" width="600" height="600"></p>
 <p>The solid line represents the mean of the AUC, the dashed line represents the median of the AUC. The darker interval in the plot shows the 25% and 75% quantiles of AUC, the lighter interval shows the minimum and maximum of AUC.</p>
 <p>It seems that the bootstrap-based validation result is stable: the median and the mean value at each evaluation time point are close; the 25% and 75% quantiles are also close to the median at each time point.</p>
 <p>Bootstrap-based validation often gives relatively stable results. Many of the established nomograms in clinical oncology research are validated by bootstrap methods. <span class="math inline">\(K\)</span>-fold cross-validation provides a more strict evaluation scheme than bootstrap. Repeated cross-validation gives similar results as <span class="math inline">\(k\)</span>-fold cross-validation, and usually more robust. These two methods are more applied by the machine learning community. Check <code><a href="../reference/hdnom.validate.html">?hdnom.validate</a></code> for more examples about internal model validation.</p>
@@ -196,7 +196,7 @@ val.ext</code></pre></div>
 ##           730
 ## AUC 0.6922393</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(val.ext)</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-9-1.png" width="600" height="600"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-9-1.png" width="600" height="600"></p>
 <p>The time-dependent AUC on the external dataset is shown above.</p>
 </div>
 </div>
@@ -233,7 +233,7 @@ cal.int</code></pre></div>
 <p>The model calibration results (the median of the predicted survival probability; the median of the observed survival probability estimated by Kaplan-Meier method with 95% CI) are summarized as above.</p>
 <p>Plot the calibration result:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cal.int, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>))</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-11-1.png" width="600" height="600"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-11-1.png" width="600" height="600"></p>
 <p>In practice, you may want to perform calibration for multiple time points separately, and put the plots together in one figure. See <code><a href="../reference/hdnom.calibrate.html">?hdnom.calibrate</a></code> for more examples about internal model calibration.</p>
 </div>
 <div id="external-calibration" class="section level2">
@@ -256,7 +256,7 @@ cal.ext</code></pre></div>
 ## 2 0.8916822 0.8667762 0.8296887 0.9055215
 ## 3 0.9214927 0.9387588 0.9122184 0.9660715</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cal.ext, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>))</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-12-1.png" width="600" height="600"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-12-1.png" width="600" height="600"></p>
 <p>The external calibration results have the similar interpretations as the internal calibration results, except the fact that external calibration is performed on the external dataset.</p>
 </div>
 <div id="kaplan-meier-analysis-for-risk-groups" class="section level2">
@@ -265,10 +265,10 @@ cal.ext</code></pre></div>
 <p>We can further analyze the differences in survival time for different risk groups with Kaplan-Meier survival curves and a number at risk table. For example, here we plot the Kaplan-Meier survival curves and evaluate the number at risk from one year to six years for the three risk groups, with the function <code><a href="../reference/hdnom.kmplot.html">hdnom.kmplot()</a></code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/hdnom.kmplot.html">hdnom.kmplot</a></span>(cal.int, <span class="dt">group.name =</span> <span class="kw">c</span>(<span class="st">'High risk'</span>, <span class="st">'Medium risk'</span>, <span class="st">'Low risk'</span>),
              <span class="dt">time.at =</span> <span class="dv">1</span>:<span class="dv">6</span> *<span class="st"> </span><span class="dv">365</span>)</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-13-1.png" width="600" height="600"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-13-1.png" width="600" height="600"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/hdnom.kmplot.html">hdnom.kmplot</a></span>(cal.ext, <span class="dt">group.name =</span> <span class="kw">c</span>(<span class="st">'High risk'</span>, <span class="st">'Medium risk'</span>, <span class="st">'Low risk'</span>),
              <span class="dt">time.at =</span> <span class="dv">1</span>:<span class="dv">6</span> *<span class="st"> </span><span class="dv">365</span>)</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-13-2.png" width="600" height="600"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-13-2.png" width="600" height="600"></p>
 <p>The <span class="math inline">\(p\)</span>-value of the log-rank test is also shown in the plot.</p>
 </div>
 <div id="log-rank-test-for-risk-groups" class="section level2">
@@ -375,9 +375,9 @@ cmp.val</code></pre></div>
 ## 0.75 Qt. 0.6823622 0.6825825
 ## Max      0.7325616 0.7458939</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cmp.val)</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-15-1.png" width="600" height="480"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-15-1.png" width="600" height="480"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cmp.val, <span class="dt">interval =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-15-2.png" width="600" height="480"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-15-2.png" width="600" height="480"></p>
 <p>The solid line, dashed line and intervals have the same interpretation as above. For this comparison, there seems to be no substantial difference (AUC difference <span class="math inline">\(&lt; 5\%\)</span>) between lasso and adaptive lasso in predictive performance, although lasso performs slightly better than adaptive lasso for the first three time points, adaptive lasso performs slightly better than lasso for the last few time points.</p>
 <p>The model comparison functions in <code>hdnom</code> have a minimal input design so you do not have to set the parameters for each model type manually. The functions will try to determine the best parameter settings automatically for each model type to achieve the best performance.</p>
 </div>
@@ -432,7 +432,7 @@ cmp.cal</code></pre></div>
 ## 4 0.8259658 0.8365244 0.7891229 0.8867733
 ## 5 0.8576949 0.9053904 0.8448153 0.9703090</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cmp.cal, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="fl">0.3</span>, <span class="dv">1</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="fl">0.3</span>, <span class="dv">1</span>))</code></pre></div>
-<p><img src="hdnom-intro_files/figure-html/unnamed-chunk-16-1.png" width="600" height="480"></p>
+<p><img src="hdnom_files/figure-html/unnamed-chunk-16-1.png" width="600" height="480"></p>
 <p>The summary output and the plot show the calibration results for each model type we want to compare. Lasso and adaptive lasso have comparable performance in this case, since their predicted overall survival probabilities are both close to the observed survival probabilities in a similar degree. Adaptive lasso seems to be slightly more stable than lasso in calibration.</p>
 </div>
 </div>

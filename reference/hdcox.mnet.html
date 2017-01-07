@@ -86,8 +86,8 @@ Cox models, evaluated by penalized partial-likelihood.</p>
     
 
     <pre><span class='fu'>hdcox.mnet</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5L</span>, <span class='kw'>gammas</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1.01</span>, <span class='fl'>1.7</span>, <span class='fl'>3</span>, <span class='fl'>100</span>),
-  <span class='kw'>alphas</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='fl'>0.05</span>, <span class='fl'>0.95</span>, <span class='fl'>0.05</span>), <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1001</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>alphas</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='fl'>0.05</span>, <span class='fl'>0.95</span>, <span class='fl'>0.05</span>), <span class='kw'>eps</span> <span class='kw'>=</span> <span class='fl'>1e-04</span>, <span class='kw'>max.iter</span> <span class='kw'>=</span> <span class='fl'>10000L</span>,
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1001</span>, <span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -101,6 +101,10 @@ Cox models, evaluated by penalized partial-likelihood.</p>
       <dd>Gammas to tune in <code><a href='http://www.rdocumentation.org/packages/ncvreg/topics/cv.ncvsurv'>cv.ncvsurv</a></code>.</dd>
       <dt>alphas</dt>
       <dd>Alphas to tune in <code><a href='http://www.rdocumentation.org/packages/ncvreg/topics/cv.ncvsurv'>cv.ncvsurv</a></code>.</dd>
+      <dt>eps</dt>
+      <dd>Convergence threshhold.</dd>
+      <dt>max.iter</dt>
+      <dd>Maximum number of iterations.</dd>
       <dt>seed</dt>
       <dd>A random seed for cross-validation fold division.</dd>
       <dt>trace</dt>
@@ -126,8 +130,9 @@ with the number of CPU cores before calling this function.</dd>
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>)
 
 <span class='co'># Fit Cox model with Mnet penalty</span>
-<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'>hdcox.mnet</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>gammas</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                 <span class='kw'>alphas</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.3</span>, <span class='fl'>0.8</span>), <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)
+<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'>hdcox.mnet</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+                 <span class='kw'>gammas</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>alphas</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.3</span>, <span class='fl'>0.8</span>),
+                 <span class='kw'>max.iter</span> <span class='kw'>=</span> <span class='fl'>15000</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)
 
 <span class='co'># Prepare data for hdnom.nomogram</span>
 <span class='no'>x.df</span> <span class='kw'>=</span> <span class='fu'>as.data.frame</span>(<span class='no'>x</span>)
