@@ -146,7 +146,10 @@ and a higher number of cross-validation folds.</p>
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>)
 
 <span class='co'># Fit Cox model with fused lasso penalty</span>
-<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'>hdcox.flasso</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)</div><div class='output co'>#&gt; 123123123123123123123123123123123123123123123</div><div class='input'>
+<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'>hdcox.flasso</span>(<span class='no'>x</span>, <span class='no'>y</span>,
+                   <span class='kw'>lambda1</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>10</span>),
+                   <span class='kw'>lambda2</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.01</span>),
+                   <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)</div><div class='output co'>#&gt; 123123</div><div class='input'>
 <span class='co'># Prepare data for hdnom.nomogram</span>
 <span class='no'>x.df</span> <span class='kw'>=</span> <span class='fu'>as.data.frame</span>(<span class='no'>x</span>)
 <span class='no'>dd</span> <span class='kw'>=</span> <span class='fu'>datadist</span>(<span class='no'>x.df</span>)
