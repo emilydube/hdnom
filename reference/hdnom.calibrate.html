@@ -169,17 +169,6 @@ Default is <code>TRUE</code>.</dd>
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitting"</span>,
   <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start fitting ...</div><div class='input'>
-<span class='co'># Model calibration by bootstrap</span>
-<span class='co'># Normally boot.times should be set to 200 or more,</span>
-<span class='co'># we set it to 3 here only to save example running time.</span>
-<span class='no'>cal.boot</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(
-  <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"bootstrap"</span>, <span class='kw'>boot.times</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start bootstrap sample 1 
-#&gt; Start bootstrap sample 2 
-#&gt; Start bootstrap sample 3 </div><div class='input'>
 <span class='co'># Model calibration by 5-fold cross-validation</span>
 <span class='no'>cal.cv</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(
   <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
@@ -191,21 +180,6 @@ Default is <code>TRUE</code>.</dd>
 #&gt; Start fold 3 
 #&gt; Start fold 4 
 #&gt; Start fold 5 </div><div class='input'>
-<span class='co'># Model calibration by repeated cross-validation</span>
-<span class='no'>cal.repcv</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(
-  <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"repeated.cv"</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>rep.times</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start repeat round 1 fold 1 
-#&gt; Start repeat round 1 fold 2 
-#&gt; Start repeat round 1 fold 3 
-#&gt; Start repeat round 2 fold 1 
-#&gt; Start repeat round 2 fold 2 
-#&gt; Start repeat round 2 fold 3 
-#&gt; Start repeat round 3 fold 1 
-#&gt; Start repeat round 3 fold 2 
-#&gt; Start repeat round 3 fold 3 </div><div class='input'>
 <span class='fu'>print</span>(<span class='no'>cal.fitting</span>)</div><div class='output co'>#&gt; High-Dimensional Cox Model Calibration Object
 #&gt; Random seed: 1010 
 #&gt; Calibration method: fitting
@@ -220,23 +194,7 @@ Default is <code>TRUE</code>.</dd>
 #&gt; 2 0.7013731 0.6649731 0.5400804 0.8187470
 #&gt; 3 0.7570641 0.8402387 0.7977191 0.8850247
 #&gt; 4 0.7969468 0.8009555 0.7048913 0.9101115
-#&gt; 5 0.8393141 0.9011939 0.8687962 0.9347997</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.fitting</span>)</div><img src='hdnom.calibrate-14.png' alt='' width='540' height='400' /><div class='input'>
-<span class='fu'>print</span>(<span class='no'>cal.boot</span>)</div><div class='output co'>#&gt; High-Dimensional Cox Model Calibration Object
-#&gt; Random seed: 1010 
-#&gt; Calibration method: bootstrap
-#&gt; Bootstrap samples: 3 
-#&gt; Model type: lasso 
-#&gt; glmnet model alpha: 1 
-#&gt; glmnet model lambda: 0.01620998 
-#&gt; glmnet model penalty factor: not specified
-#&gt; Calibration time point: 3285 
-#&gt; Number of groups formed for calibration: 5 </div><div class='input'><span class='fu'>summary</span>(<span class='no'>cal.boot</span>)</div><div class='output co'>#&gt;   Calibration Summary Table
-#&gt;   Predicted  Observed Lower 95% Upper 95%
-#&gt; 1 0.5500014 0.4697376 0.3973646 0.5552920
-#&gt; 2 0.6641171 0.6878699 0.5843790 0.8096885
-#&gt; 3 0.7204872 0.8199909 0.7723427 0.8705787
-#&gt; 4 0.7632026 0.8147274 0.7244054 0.9163111
-#&gt; 5 0.8071295 0.9143259 0.8832563 0.9464883</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.boot</span>)</div><img src='hdnom.calibrate-20.png' alt='' width='540' height='400' /><div class='input'>
+#&gt; 5 0.8393141 0.9011939 0.8687962 0.9347997</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.fitting</span>)</div><img src='hdnom.calibrate-10.png' alt='' width='540' height='400' /><div class='input'>
 <span class='fu'>print</span>(<span class='no'>cal.cv</span>)</div><div class='output co'>#&gt; High-Dimensional Cox Model Calibration Object
 #&gt; Random seed: 1010 
 #&gt; Calibration method: k-fold cross-validation
@@ -252,24 +210,7 @@ Default is <code>TRUE</code>.</dd>
 #&gt; 2 0.7029040 0.6982853 0.5867801 0.8309796
 #&gt; 3 0.7566084 0.8315265 0.7875912 0.8779128
 #&gt; 4 0.7975700 0.7993794 0.7070266 0.9037955
-#&gt; 5 0.8387503 0.9090449 0.8776173 0.9415978</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.cv</span>)</div><img src='hdnom.calibrate-26.png' alt='' width='540' height='400' /><div class='input'>
-<span class='fu'>print</span>(<span class='no'>cal.repcv</span>)</div><div class='output co'>#&gt; High-Dimensional Cox Model Calibration Object
-#&gt; Random seed: 1010 
-#&gt; Calibration method: repeated cross-validation
-#&gt; Cross-validation folds: 3 
-#&gt; Cross-validation repeated times: 3 
-#&gt; Model type: lasso 
-#&gt; glmnet model alpha: 1 
-#&gt; glmnet model lambda: 0.01620998 
-#&gt; glmnet model penalty factor: not specified
-#&gt; Calibration time point: 3285 
-#&gt; Number of groups formed for calibration: 5 </div><div class='input'><span class='fu'>summary</span>(<span class='no'>cal.repcv</span>)</div><div class='output co'>#&gt;   Calibration Summary Table
-#&gt;   Predicted  Observed Lower 95% Upper 95%
-#&gt; 1 0.5850609 0.4793403 0.4071597 0.5643170
-#&gt; 2 0.7025410 0.6851445 0.5666195 0.8284625
-#&gt; 3 0.7583416 0.8051270 0.7584472 0.8546798
-#&gt; 4 0.7987279 0.8614493 0.7875460 0.9422877
-#&gt; 5 0.8405062 0.8565130 0.7729964 0.9490529</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.repcv</span>)</div><img src='hdnom.calibrate-32.png' alt='' width='540' height='400' /></pre>
+#&gt; 5 0.8387503 0.9090449 0.8776173 0.9415978</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.cv</span>)</div><img src='hdnom.calibrate-16.png' alt='' width='540' height='400' /></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
