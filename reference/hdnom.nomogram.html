@@ -147,9 +147,10 @@ of a vector of multiple lambdas) in the fitted model object.</p>
 <span class='fu'>options</span>(<span class='kw'>datadist</span> <span class='kw'>=</span> <span class='st'>"dd"</span>)
 
 <span class='co'># Generate hdnom.nomogram objects and plot nomogram</span>
-<span class='no'>nom</span> <span class='kw'>=</span> <span class='fu'>hdnom.nomogram</span>(<span class='no'>fit</span>$<span class='no'>lasso_model</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-                     <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='no'>x.df</span>, <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>2</span>,
-                     <span class='kw'>funlabel</span> <span class='kw'>=</span> <span class='st'>"2-Year Overall Survival Probability"</span>)
+<span class='no'>nom</span> <span class='kw'>=</span> <span class='fu'>hdnom.nomogram</span>(
+  <span class='no'>fit</span>$<span class='no'>lasso_model</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
+  <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='no'>x.df</span>, <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>2</span>,
+  <span class='kw'>funlabel</span> <span class='kw'>=</span> <span class='st'>"2-Year Overall Survival Probability"</span>)
 
 <span class='fu'>print</span>(<span class='no'>nom</span>)</div><div class='output co'>#&gt; Points per unit of linear predictor: 43.07899 
 #&gt; Linear predictor units per point   : 0.02321317 

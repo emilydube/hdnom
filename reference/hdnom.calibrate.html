@@ -163,37 +163,41 @@ Default is <code>TRUE</code>.</dd>
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
 
 <span class='co'># Model calibration by fitting the original data directly</span>
-<span class='no'>cal.fitting</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-                              <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
-                              <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitting"</span>,
-                              <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                              <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start fitting ...</div><div class='input'>
+<span class='no'>cal.fitting</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(
+  <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitting"</span>,
+  <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start fitting ...</div><div class='input'>
 <span class='co'># Model calibration by bootstrap</span>
 <span class='co'># Normally boot.times should be set to 200 or more,</span>
 <span class='co'># we set it to 3 here only to save example running time.</span>
-<span class='no'>cal.boot</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-                           <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
-                           <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"bootstrap"</span>, <span class='kw'>boot.times</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                           <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                           <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start bootstrap sample 1 
+<span class='no'>cal.boot</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(
+  <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"bootstrap"</span>, <span class='kw'>boot.times</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start bootstrap sample 1 
 #&gt; Start bootstrap sample 2 
 #&gt; Start bootstrap sample 3 </div><div class='input'>
 <span class='co'># Model calibration by 5-fold cross-validation</span>
-<span class='no'>cal.cv</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-                         <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
-                         <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"cv"</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                         <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                         <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start fold 1 
+<span class='no'>cal.cv</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(
+  <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"cv"</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start fold 1 
 #&gt; Start fold 2 
 #&gt; Start fold 3 
 #&gt; Start fold 4 
 #&gt; Start fold 5 </div><div class='input'>
 <span class='co'># Model calibration by repeated cross-validation</span>
-<span class='no'>cal.repcv</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
-                            <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
-                            <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"repeated.cv"</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>rep.times</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                            <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                            <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start repeat round 1 fold 1 
+<span class='no'>cal.repcv</span> <span class='kw'>=</span> <span class='fu'>hdnom.calibrate</span>(
+  <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"lasso"</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='no'>fit</span>$<span class='no'>lasso_best_lambda</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"repeated.cv"</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>rep.times</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>9</span>, <span class='kw'>ngroup</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1010</span>)</div><div class='output co'>#&gt; Start repeat round 1 fold 1 
 #&gt; Start repeat round 1 fold 2 
 #&gt; Start repeat round 1 fold 3 
 #&gt; Start repeat round 2 fold 1 

@@ -155,11 +155,10 @@ regression models.
 <span class='no'>event</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>EVENT</span>[<span class='fl'>1</span>:<span class='fl'>1000</span>]
 
 <span class='co'># Compare lasso and adaptive lasso by 5-fold cross-validation</span>
-<span class='no'>cmp.val.cv</span> <span class='kw'>=</span>
-  <span class='fu'>hdnom.compare.validate</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>,
-                         <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"lasso"</span>, <span class='st'>"alasso"</span>),
-                         <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"cv"</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>tauc.type</span> <span class='kw'>=</span> <span class='st'>"UNO"</span>,
-                         <span class='kw'>tauc.time</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='fl'>0.25</span>, <span class='fl'>2</span>, <span class='fl'>0.25</span>) * <span class='fl'>365</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1001</span>)</div><div class='output co'>#&gt; Starting model 1 : lasso 
+<span class='no'>cmp.val.cv</span> <span class='kw'>=</span> <span class='fu'>hdnom.compare.validate</span>(
+  <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"lasso"</span>, <span class='st'>"alasso"</span>),
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"cv"</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>tauc.type</span> <span class='kw'>=</span> <span class='st'>"UNO"</span>,
+  <span class='kw'>tauc.time</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='fl'>0.25</span>, <span class='fl'>2</span>, <span class='fl'>0.25</span>) * <span class='fl'>365</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1001</span>)</div><div class='output co'>#&gt; Starting model 1 : lasso 
 #&gt; Start fold 1 
 #&gt; Start fold 2 
 #&gt; Start fold 3 
