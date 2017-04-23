@@ -1,1 +1,1 @@
-# [hdnom.org](http://hdnom.org)
+[https://hdnom.org](https://hdnom.org)
