@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -63,10 +64,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/hdnom.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -153,23 +160,24 @@ Springer Science &amp; Business Media.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>smart</span>)
 <span class='fu'>dim</span>(<span class='no'>smart</span>)</div><div class='output co'>#&gt; [1] 3873   29</div><div class='input'>
-<span class='co'># # Code for generating the smart dataset by imputing the smarto data</span>
-<span class='co'># library("mice")</span>
-<span class='co'># library("Hmisc")</span>
-<span class='co'># data(smarto)</span>
-<span class='co'># set.seed(1000)</span>
-<span class='co'># smarti = aregImpute(~ I(TEVENT) + EVENT + SEX + I(AGE) +</span>
-<span class='co'>#   DIABETES + CEREBRAL + CARDIAC + AAA + PERIPH +</span>
-<span class='co'>#   STENOSIS + SYSTBP + DIASTBP + SYSTH + DIASTH +</span>
-<span class='co'>#   I(LENGTH) + I(WEIGHT) + I(BMI) +</span>
-<span class='co'>#   I(CHOL) + I(HDL) + I(LDL) + I(TRIG) + I(HOMOC) + I(GLUT) + I(CREAT) + I(IMT) +</span>
-<span class='co'>#   as.factor(ALBUMIN) + as.factor(SMOKING) + I(PACKYRS) + as.factor(ALCOHOL),</span>
-<span class='co'>#   n.impute = 10, data = smarto)</span>
-<span class='co'># imputed = impute.transcan(smarti, imputation = 1, data = smarto,</span>
-<span class='co'>#   list.out = TRUE, pr = FALSE, check = FALSE)</span>
-<span class='co'># smart = smarto</span>
-<span class='co'># smart[names(imputed)] = imputed</span>
-<span class='co'># str(smart)</span></div></pre>
+# # Code for generating the smart dataset by imputing the smarto data
+# library("mice")
+# library("Hmisc")
+# data(smarto)
+# set.seed(1000)
+# smarti = aregImpute(~ I(TEVENT) + EVENT + SEX + I(AGE) +
+#   DIABETES + CEREBRAL + CARDIAC + AAA + PERIPH +
+#   STENOSIS + SYSTBP + DIASTBP + SYSTH + DIASTH +
+#   I(LENGTH) + I(WEIGHT) + I(BMI) +
+#   I(CHOL) + I(HDL) + I(LDL) + I(TRIG) + I(HOMOC) + I(GLUT) + I(CREAT) + I(IMT) +
+#   as.factor(ALBUMIN) + as.factor(SMOKING) + I(PACKYRS) + as.factor(ALCOHOL),
+#   n.impute = 10, data = smarto)
+# imputed = impute.transcan(smarti, imputation = 1, data = smarto,
+#   list.out = TRUE, pr = FALSE, check = FALSE)
+# smart = smarto
+# smart[names(imputed)] = imputed
+# str(smart)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

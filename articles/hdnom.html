@@ -38,10 +38,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/hdnom.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -69,7 +75,7 @@
       <h1>An Introduction to hdnom</h1>
                         <h4 class="author">Miaozhu Li &lt;<a href="http://miaozhu.li" class="uri">http://miaozhu.li</a>&gt; <br> Nan Xiao &lt;<a href="https://nanx.me" class="uri">https://nanx.me</a>&gt;</h4>
             
-            <h4 class="date">2017-04-23</h4>
+            <h4 class="date">2017-08-10</h4>
           </div>
 
     
@@ -143,12 +149,12 @@ time =<span class="st"> </span>smart<span class="op">$</span>TEVENT
 event =<span class="st"> </span>smart<span class="op">$</span>EVENT
 
 <span class="kw">library</span>(<span class="st">"survival"</span>)
-y =<span class="st"> </span><span class="kw">Surv</span>(time, event)</code></pre></div>
+y =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/survival/topics/Surv">Surv</a></span>(time, event)</code></pre></div>
 <p>The dataset contains 3873 observations with corresponding survival outcome (<code>time</code>, <code>event</code>). 27 clinical variables (<code>x</code>) are available as the predictors. See <code><a href="../reference/smart.html">?smart</a></code> for a detailed explanation of the variables.</p>
 <p>Fit a penalized Cox model by adaptive elastic-net regularization, with <code>hdcox.aenet</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># enable parallel parameter tuning</span>
 <span class="kw">suppressMessages</span>(<span class="kw">library</span>(<span class="st">"doParallel"</span>))
-<span class="kw">registerDoParallel</span>(<span class="kw">detectCores</span>())
+<span class="kw"><a href="http://www.rdocumentation.org/packages/doParallel/topics/registerDoParallel">registerDoParallel</a></span>(<span class="kw">detectCores</span>())
 
 fit =<span class="st"> </span><span class="kw"><a href="../reference/hdcox.aenet.html">hdcox.aenet</a></span>(x, y, <span class="dt">nfolds =</span> <span class="dv">10</span>, <span class="dt">rule =</span> <span class="st">"lambda.1se"</span>,
                   <span class="dt">seed =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">7</span>), <span class="dt">parallel =</span> <span class="ot">TRUE</span>)
@@ -169,15 +175,13 @@ adapen =<span class="st"> </span>fit<span class="op">$</span>pen_factor</code></
 <p>To plot the nomogram, first we make <code>x</code> available as a <code>datadist</code> object for the <code>rms</code> package <span class="citation">(Harrell 2013)</span>, then generate a <code>hdnom.nomogram</code> object with <code><a href="../reference/hdnom.nomogram.html">hdnom.nomogram()</a></code>, and plot the nomogram:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressMessages</span>(<span class="kw">library</span>(<span class="st">"rms"</span>))
 x.df =<span class="st"> </span><span class="kw">as.data.frame</span>(x)
-dd =<span class="st"> </span><span class="kw">datadist</span>(x.df)
+dd =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/rms/topics/datadist">datadist</a></span>(x.df)
 <span class="kw">options</span>(<span class="dt">datadist =</span> <span class="st">"dd"</span>)
 
 nom =<span class="st"> </span><span class="kw"><a href="../reference/hdnom.nomogram.html">hdnom.nomogram</a></span>(model, <span class="dt">model.type =</span> <span class="st">"aenet"</span>,
                      x, time, event, x.df, <span class="dt">pred.at =</span> <span class="dv">365</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>,
-                     <span class="dt">funlabel =</span> <span class="st">"2-Year Overall Survival Probability"</span>)</code></pre></div>
-<pre><code>## Warning in structure(ia, dimnames = NULL): Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.
-##   Consider 'structure(list(), *)' instead.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(nom)</code></pre></div>
+                     <span class="dt">funlabel =</span> <span class="st">"2-Year Overall Survival Probability"</span>)
+<span class="kw">plot</span>(nom)</code></pre></div>
 <p><img src="hdnom_files/figure-html/unnamed-chunk-6-1.png" width="600" height="600"></p>
 <p>According to the nomogram, the adaptive elastic-net model selected 6 variables from the original set of 27 variables, effectively reduced the model complexity.</p>
 <p>Information about the nomogram itself, such as the point-linear predictor unit mapping and total points-survival probability mapping, can be viewed by printing the <code>nom</code> object directly.</p>
@@ -597,7 +601,8 @@ cmp.cal</code></pre></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#build-survival-models">Build Survival Models</a></li>

@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -63,10 +64,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/hdnom.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -158,7 +165,7 @@ with the number of CPU cores before calling this function.</p></td>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>as.matrix</span>(<span class='no'>smart</span>[, -<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>)])[<span class='fl'>1</span>:<span class='fl'>120</span>, ]
 <span class='no'>time</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>TEVENT</span>[<span class='fl'>1</span>:<span class='fl'>120</span>]
 <span class='no'>event</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>EVENT</span>[<span class='fl'>1</span>:<span class='fl'>120</span>]
-<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>)
+<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/survival/topics/Surv'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>event</span>)
 
 <span class='co'># Fit Cox model with SCAD penalty</span>
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'>hdcox.scad</span>(
@@ -167,16 +174,16 @@ with the number of CPU cores before calling this function.</p></td>
 
 <span class='co'># Prepare data for hdnom.nomogram</span>
 <span class='no'>x.df</span> <span class='kw'>=</span> <span class='fu'>as.data.frame</span>(<span class='no'>x</span>)
-<span class='no'>dd</span> <span class='kw'>=</span> <span class='fu'>datadist</span>(<span class='no'>x.df</span>)
+<span class='no'>dd</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/rms/topics/datadist'>datadist</a></span>(<span class='no'>x.df</span>)
 <span class='fu'>options</span>(<span class='kw'>datadist</span> <span class='kw'>=</span> <span class='st'>"dd"</span>)
 
 <span class='co'># Generate hdnom.nomogram objects and plot nomogram</span>
 <span class='no'>nom</span> <span class='kw'>=</span> <span class='fu'><a href='hdnom.nomogram.html'>hdnom.nomogram</a></span>(
   <span class='no'>fit</span>$<span class='no'>scad_model</span>, <span class='kw'>model.type</span> <span class='kw'>=</span> <span class='st'>"scad"</span>,
   <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>, <span class='no'>x.df</span>, <span class='kw'>pred.at</span> <span class='kw'>=</span> <span class='fl'>365</span> * <span class='fl'>2</span>,
-  <span class='kw'>funlabel</span> <span class='kw'>=</span> <span class='st'>"2-Year Overall Survival Probability"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.</span>
-#&gt; <span class='warning'>  Consider 'structure(list(), *)' instead.</span></div><div class='input'>
-<span class='fu'>plot</span>(<span class='no'>nom</span>)</div><img src='hdcox.scad-4.png' alt='' width='540' height='400' /></pre>
+  <span class='kw'>funlabel</span> <span class='kw'>=</span> <span class='st'>"2-Year Overall Survival Probability"</span>)
+
+<span class='fu'>plot</span>(<span class='no'>nom</span>)</div><div class='img'><img src='hdcox.scad-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

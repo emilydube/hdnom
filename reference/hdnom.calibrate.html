@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -63,10 +64,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/hdnom.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -208,7 +215,7 @@ Default is <code>TRUE</code>.</p></td>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>as.matrix</span>(<span class='no'>smart</span>[, -<span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>)])
 <span class='no'>time</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>TEVENT</span>
 <span class='no'>event</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>EVENT</span>
-<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>)
+<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/survival/topics/Surv'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>event</span>)
 
 <span class='co'># Fit Cox model with lasso penalty</span>
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
@@ -245,7 +252,7 @@ Default is <code>TRUE</code>.</p></td>
 #&gt; 2 0.7013731 0.6649731 0.5400804 0.8187470
 #&gt; 3 0.7570641 0.8402387 0.7977191 0.8850247
 #&gt; 4 0.7969468 0.8009555 0.7048913 0.9101115
-#&gt; 5 0.8393141 0.9011939 0.8687962 0.9347997</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.fitting</span>)</div><img src='hdnom.calibrate-10.png' alt='' width='540' height='400' /><div class='input'>
+#&gt; 5 0.8393141 0.9011939 0.8687962 0.9347997</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.fitting</span>)</div><div class='img'><img src='hdnom.calibrate-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='fu'>print</span>(<span class='no'>cal.cv</span>)</div><div class='output co'>#&gt; High-Dimensional Cox Model Calibration Object
 #&gt; Random seed: 1010 
 #&gt; Calibration method: k-fold cross-validation
@@ -261,7 +268,7 @@ Default is <code>TRUE</code>.</p></td>
 #&gt; 2 0.7029040 0.6982853 0.5867801 0.8309796
 #&gt; 3 0.7566084 0.8315265 0.7875912 0.8779128
 #&gt; 4 0.7975700 0.7993794 0.7070266 0.9037955
-#&gt; 5 0.8387503 0.9090449 0.8776173 0.9415978</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.cv</span>)</div><img src='hdnom.calibrate-16.png' alt='' width='540' height='400' /></pre>
+#&gt; 5 0.8387503 0.9090449 0.8776173 0.9415978</div><div class='input'><span class='fu'>plot</span>(<span class='no'>cal.cv</span>)</div><div class='img'><img src='hdnom.calibrate-2.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

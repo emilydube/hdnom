@@ -24,7 +24,8 @@ External Calibration Results — hdnom.kmplot • hdnom</title>
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -64,10 +65,16 @@ External Calibration Results — hdnom.kmplot • hdnom</title>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/hdnom.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -149,7 +156,7 @@ Default is <code>"JCO"</code>.</p></td>
 <span class='no'>event_new</span> <span class='kw'>=</span> <span class='no'>smart</span>$<span class='no'>EVENT</span>[<span class='fl'>1001</span>:<span class='fl'>2000</span>]
 
 <span class='co'># Fit Cox model with lasso penalty</span>
-<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>), <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
+<span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(<span class='no'>x</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/survival/topics/Surv'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>event</span>), <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
 
 <span class='co'># Internal calibration</span>
 <span class='no'>cal.int</span> <span class='kw'>=</span> <span class='fu'><a href='hdnom.calibrate.html'>hdnom.calibrate</a></span>(
@@ -163,7 +170,7 @@ Default is <code>"JCO"</code>.</p></td>
 #&gt; Start fold 5 </div><div class='input'>
 <span class='fu'>hdnom.kmplot</span>(
   <span class='no'>cal.int</span>, <span class='kw'>group.name</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'High risk'</span>, <span class='st'>'Medium risk'</span>, <span class='st'>'Low risk'</span>),
-  <span class='kw'>time.at</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>6</span> * <span class='fl'>365</span>)</div><img src='hdnom.kmplot-4.png' alt='' width='540' height='400' /><div class='input'>
+  <span class='kw'>time.at</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>6</span> * <span class='fl'>365</span>)</div><div class='img'><img src='hdnom.kmplot-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># External calibration</span>
 <span class='no'>cal.ext</span> <span class='kw'>=</span> <span class='fu'><a href='hdnom.external.calibrate.html'>hdnom.external.calibrate</a></span>(
   <span class='no'>fit</span>, <span class='no'>x</span>, <span class='no'>time</span>, <span class='no'>event</span>,
@@ -172,7 +179,7 @@ Default is <code>"JCO"</code>.</p></td>
 
 <span class='fu'>hdnom.kmplot</span>(
   <span class='no'>cal.ext</span>, <span class='kw'>group.name</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'High risk'</span>,<span class='st'>'Medium risk'</span>, <span class='st'>'Low risk'</span>),
-  <span class='kw'>time.at</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>6</span> * <span class='fl'>365</span>)</div><img src='hdnom.kmplot-6.png' alt='' width='540' height='400' /></pre>
+  <span class='kw'>time.at</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>6</span> * <span class='fl'>365</span>)</div><div class='img'><img src='hdnom.kmplot-2.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

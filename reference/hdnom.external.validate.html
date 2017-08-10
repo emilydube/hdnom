@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -63,10 +64,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/hdnom.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -187,7 +194,7 @@ regression models.
 
 <span class='co'># Fit Cox model with lasso penalty</span>
 <span class='no'>fit</span> <span class='kw'>=</span> <span class='fu'><a href='hdcox.lasso.html'>hdcox.lasso</a></span>(
-  <span class='no'>x</span>, <span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>event</span>),
+  <span class='no'>x</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/survival/topics/Surv'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>event</span>),
   <span class='kw'>nfolds</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>rule</span> <span class='kw'>=</span> <span class='st'>"lambda.1se"</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>11</span>)
 
 <span class='co'># External validation with time-dependent AUC</span>
@@ -203,7 +210,7 @@ regression models.
 #&gt; Evaluation time points for tAUC: 91.25 182.5 273.75 365 456.25 547.5 638.75 730</div><div class='input'><span class='fu'>summary</span>(<span class='no'>val.ext</span>)</div><div class='output co'>#&gt; Time-Dependent AUC Summary at Evaluation Time Points</div><div class='output co'>#&gt;         91.25     182.5    273.75       365   456.25     547.5    638.75
 #&gt; AUC 0.5146531 0.5771193 0.6329524 0.6168784 0.636541 0.6482618 0.6526306
 #&gt;           730
-#&gt; AUC 0.6576868</div><div class='input'><span class='fu'>plot</span>(<span class='no'>val.ext</span>)</div><img src='hdnom.external.validate-7.png' alt='' width='540' height='400' /><div class='input'>
+#&gt; AUC 0.6576868</div><div class='input'><span class='fu'>plot</span>(<span class='no'>val.ext</span>)</div><div class='img'><img src='hdnom.external.validate-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
